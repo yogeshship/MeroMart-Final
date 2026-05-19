@@ -1,0 +1,284 @@
+/* About and Contact page custom styling only */
+
+/* Page heading */
+.common-page-head {
+    margin-bottom: 36px;
+    max-width: 760px;
+}
+
+.common-page-head h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 56px;
+    line-height: 1;
+    margin: 14px 0 14px;
+    color: #101820;
+}
+
+/* Contact page layout */
+.contact-public-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(300px, 0.8fr);
+    gap: 28px;
+    align-items: start;
+}
+
+/* Shared card style */
+.contact-public-card,
+.contact-info-card,
+.support-public-card,
+.about-hero-card,
+.about-info-card,
+.about-feature-card,
+.about-database-card {
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(0, 111, 85, 0.12);
+    border-radius: 28px;
+    box-shadow: 0 20px 60px rgba(0, 50, 38, 0.08);
+}
+
+/* Contact form card */
+.contact-public-card {
+    padding: 38px;
+}
+
+.contact-public-card h2,
+.contact-info-card h2,
+.support-public-card h2,
+.about-hero-card h2,
+.about-info-card h2,
+.about-feature-card h2,
+.about-database-card h2 {
+    font-family: "Cormorant Garamond", serif;
+    color: #101820;
+    margin: 0 0 12px;
+}
+
+.contact-public-card p,
+.contact-info-card p,
+.about-hero-card p,
+.about-info-card p,
+.about-feature-item p,
+.about-database-card p {
+    color: #5f6b76;
+    line-height: 1.7;
+}
+
+/* Contact form only */
+.contact-form {
+    margin-top: 28px;
+}
+
+.contact-form label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: 800;
+    color: #101820;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    border: 1px solid rgba(16, 24, 32, 0.12);
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-family: "Manrope", sans-serif;
+    font-size: 15px;
+    background: #ffffff;
+    outline: none;
+}
+
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #006F55;
+    box-shadow: 0 0 0 4px rgba(0, 111, 85, 0.08);
+}
+
+/* Button row */
+.button-row {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+/* Success message */
+.inline-success {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #E5F3EE;
+    color: #006F55;
+    padding: 12px 16px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.inline-success svg {
+    width: 16px;
+    height: 16px;
+    stroke: #006F55;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Error message */
+.error-message {
+    background: #FDECEC;
+    color: #B00020;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-weight: 800;
+    margin-top: 18px;
+}
+
+/* Contact side cards */
+.contact-side-panel {
+    display: grid;
+    gap: 24px;
+}
+
+.contact-info-card {
+    padding: 30px;
+}
+
+.contact-info-item {
+    display: grid;
+    gap: 4px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(16, 24, 32, 0.08);
+}
+
+.contact-info-item:last-child {
+    border-bottom: none;
+}
+
+.contact-info-item strong {
+    color: #101820;
+}
+
+.contact-info-item span {
+    color: #5f6b76;
+}
+
+/* Database badge */
+.public-badge {
+    display: inline-flex;
+    margin-top: 18px;
+    padding: 12px 16px;
+    background: #E5F3EE;
+    color: #006F55;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+/* Support categories */
+.support-public-card {
+    margin-top: 28px;
+    padding: 30px;
+}
+
+.support-public-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.support-public-item {
+    background: #F4EFE6;
+    color: #006F55;
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+    font-weight: 800;
+}
+
+/* About page */
+.about-hero-card {
+    padding: 42px;
+    margin-bottom: 28px;
+}
+
+.about-hero-card h2 {
+    font-size: 42px;
+}
+
+.about-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.about-info-card {
+    padding: 30px;
+}
+
+.about-info-card h2 {
+    color: #006F55;
+    font-size: 30px;
+}
+
+.about-feature-card {
+    padding: 34px;
+    margin-bottom: 28px;
+}
+
+.about-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-top: 22px;
+}
+
+.about-feature-item {
+    padding-right: 18px;
+    border-right: 1px solid rgba(16, 24, 32, 0.1);
+}
+
+.about-feature-item:last-child {
+    border-right: none;
+}
+
+.about-feature-item h3 {
+    color: #006F55;
+    margin: 0 0 8px;
+}
+
+.about-database-card {
+    padding: 34px;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+    .common-page-head h1 {
+        font-size: 42px;
+    }
+
+    .contact-public-grid,
+    .about-card-grid,
+    .about-feature-grid,
+    .support-public-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-feature-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(16, 24, 32, 0.1);
+        padding-bottom: 18px;
+    }
+
+    .about-feature-item:last-child {
+        border-bottom: none;
+    }
+}
