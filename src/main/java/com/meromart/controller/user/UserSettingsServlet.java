@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/wishlist")
-public class WishlistServlet extends HttpServlet {
+@WebServlet("/usersettings")
+public class UserSettingsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -26,7 +26,9 @@ public class WishlistServlet extends HttpServlet {
             return;
         }
 
-        request.setAttribute("activePage", "wishlist");
-        request.getRequestDispatcher("/pages/user/wishlist.jsp").forward(request, response);
+        request.setAttribute("activePage", "settings");
+        request.setAttribute("profileUser", user);
+
+        request.getRequestDispatcher("/pages/user/user-settings.jsp").forward(request, response);
     }
 }

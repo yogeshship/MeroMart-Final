@@ -11,13 +11,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 // Handles admin order listing and order status update
-@WebServlet("/admin/orders")
+@WebServlet({"/admin/orders", "/manageorder"})
 public class ManageOrderServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private final OrderDAO orderDAO = new OrderDAO();
 
-    // Shows all orders in admin manage orders page
+    // Shows all customer orders in the admin Manage Orders page
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,24 +28,34 @@ public class ManageOrderServlet extends HttpServlet {
         request.getRequestDispatcher("/pages/admin/manage-orders.jsp").forward(request, response);
     }
 
-    // Updates order status from admin page
+    // Updates order status from the admin side
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            int orderId = Integer.parseInt(request.getParameter("orderId"));
+            String orderIdValue = request.getParameter("orderId");
             String status = request.getParameter("status");
 
-            if (status != null && !status.trim().isEmpty()) {
-                orderDAO.updateOrderStatus(orderId, status.trim());
+            if (orderIdValue == null || orderIdValue.isBlank()
+                    || status == null || status.isBlank()) {
+
+                response.sendRedirect(request.getContextPath() + "/manageorder?error=update");
+                return;
             }
 
-            response.sendRedirect(request.getContextPath() + "/admin/orders");
+            int orderId = Integer.parseInt(orderIdValue);
+            boolean updated = orderDAO.updateOrderStatus(orderId, status.trim());
+
+            if (updated) {
+                response.sendRedirect(request.getContextPath() + "/manageorder?msg=updated");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/manageorder?error=update");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/admin/orders?error=update");
+            response.sendRedirect(request.getContextPath() + "/manageorder?error=update");
         }
     }
 }

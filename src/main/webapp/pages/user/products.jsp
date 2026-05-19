@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,7 @@
 
 <body class="user-body">
 
-    <!-- Use the same public navbar as Home, About and Contact pages -->
+    <!-- Common public navbar -->
     <jsp:include page="../common/navbar.jsp" />
 
     <main class="u-page">
@@ -33,8 +34,8 @@
                         <h1>Products arranged with more space and less visual noise.</h1>
 
                         <p class="u-subtitle">
-                            This remake gives the catalog a calmer structure, softer card rhythm,
-                            and images that support the content instead of taking over the page.
+                            Browse fresh groceries from the Mero Mart catalog with a clean layout,
+                            clear product details, and quick access to each item.
                         </p>
 
                         <div class="catalog-copy-points">
@@ -60,8 +61,7 @@
                         <strong>Less pressure. Better focus.</strong>
 
                         <p class="catalog-focus-copy">
-                            We trimmed the visual weight of the page and gave each block enough
-                            breathing room to feel composed.
+                            Each product is displayed with clear price, unit, category, and stock information.
                         </p>
 
                         <p class="catalog-focus-copy">
@@ -80,8 +80,8 @@
                 <div class="catalog-stat-card">
                     <span class="catalog-stat-icon"></span>
                     <div>
-                        <strong>300+</strong>
-                        <small>Products</small>
+                        <strong>${empty products ? '0' : products.size()}</strong>
+                        <small>Available Products</small>
                     </div>
                 </div>
 
@@ -96,8 +96,8 @@
                 <div class="catalog-stat-card">
                     <span class="catalog-stat-icon"></span>
                     <div>
-                        <strong>08</strong>
-                        <small>Featured</small>
+                        <strong>Fresh</strong>
+                        <small>Daily Picks</small>
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                     <span class="catalog-stat-icon"></span>
                     <div>
                         <strong>Easy</strong>
-                        <small>Browsing flow</small>
+                        <small>Browsing Flow</small>
                     </div>
                 </div>
             </section>
@@ -137,38 +137,77 @@
                 </div>
             </section>
 
-            <!-- Product grid -->
+            <!-- Product grid loaded from database -->
             <section class="u-grid" id="catalog-grid" aria-label="Product grid">
 
                 <c:forEach var="p" items="${products}">
                     <article class="p-card">
                         <a href="<c:url value='/productdetail?id=${p.id}'/>">
 
+                            <!-- Product image -->
                             <div class="p-media">
-                                <c:if test="${not empty p.badge}">
-                                    <span class="p-badge">${p.badge}</span>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${not empty p.imagePath}">
+                                        <img src="<c:url value='/${p.imagePath}'/>" alt="${p.productName}">
+                                    </c:when>
 
-                                <img src="<c:url value='${p.image}'/>" alt="${p.name}">
+                                    <c:otherwise>
+                                        <img src="<c:url value='/assets/images/placeholder.png'/>" alt="Product image">
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
 
+                            <!-- Product details -->
                             <div class="p-body">
-                                <h3 class="p-title">${p.name}</h3>
+                                <h3 class="p-title">
+                                    <c:out value="${p.productName}" />
+                                </h3>
 
                                 <div class="p-meta">
-                                    <span>${p.category}</span>
-                                    <span>${p.rating}&#9733;</span>
+                                    <span>
+                                        <c:choose>
+                                            <c:when test="${not empty p.categoryName}">
+                                                <c:out value="${p.categoryName}" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                Grocery
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span>
+
+                                    <span>
+                                        Stock: <c:out value="${p.stockQuantity}" />
+                                    </span>
                                 </div>
 
-                                <p class="p-description">${p.description}</p>
+                                <p class="p-description">
+                                    <c:choose>
+                                        <c:when test="${not empty p.description}">
+                                            <c:out value="${p.description}" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            Fresh grocery item selected for everyday shopping.
+                                        </c:otherwise>
+                                    </c:choose>
+                                </p>
 
                                 <div class="p-price">
-                                    <strong>Rs. ${p.price}</strong>
-                                    <span class="p-unit">${p.unit}</span>
+                                    <strong>Rs. <c:out value="${p.price}" /></strong>
+                                    <span class="p-unit">/ <c:out value="${p.unit}" /></span>
                                 </div>
 
                                 <div class="p-footer">
-                                    <span class="p-stock">${p.stockLabel}</span>
+                                    <span class="p-stock">
+                                        <c:choose>
+                                            <c:when test="${p.stockQuantity > 0}">
+                                                In Stock
+                                            </c:when>
+                                            <c:otherwise>
+                                                Out of Stock
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span>
+
                                     <span class="p-link">View details</span>
                                 </div>
                             </div>
@@ -176,11 +215,21 @@
                     </article>
                 </c:forEach>
 
+                <!-- Empty state -->
+                <c:if test="${empty products}">
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 28px;">
+                        <h2>No products found</h2>
+                        <p class="u-subtitle">
+                            No active products are available right now.
+                        </p>
+                    </div>
+                </c:if>
+
             </section>
         </div>
     </main>
 
-    <!-- Use the same public footer as Home, About and Contact pages -->
+    <!-- Common public footer -->
     <jsp:include page="../common/footer.jsp" />
 
 </body>

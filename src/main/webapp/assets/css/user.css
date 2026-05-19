@@ -1554,3 +1554,147 @@ input {
         padding-right: 22px;
     }
 }
+/* Account dropdown in public navbar */
+.store-user {
+    position: relative;
+}
+
+.store-user summary {
+    list-style: none;
+}
+
+.store-user summary::-webkit-details-marker {
+    display: none;
+}
+
+.store-user-menu {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    min-width: 170px;
+    background: #ffffff;
+    border: 1px solid rgba(12, 81, 63, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 18px 45px rgba(12, 81, 63, 0.12);
+    padding: 10px;
+    z-index: 50;
+}
+
+.store-user-menu a {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 10px;
+    color: #102033;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.store-user-menu a:hover {
+    background: #e6f2ee;
+    color: #087557;
+}
+/* Clean account dropdown */
+.store-account {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.store-account-btn {
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 7px 12px 7px 7px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    font-family: inherit;
+    min-height: 44px;
+}
+
+.store-account-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.store-account-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f7f0e6;
+    color: #087557;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.store-account-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    text-align: left;
+}
+
+.store-account-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.78;
+    font-weight: 800;
+}
+
+.store-account-name {
+    max-width: 76px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.store-account-caret {
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.store-account-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 190px;
+    background: #ffffff;
+    border: 1px solid rgba(12, 81, 63, 0.14);
+    border-radius: 18px;
+    box-shadow: 0 20px 55px rgba(12, 81, 63, 0.16);
+    padding: 10px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: 0.18s ease;
+}
+
+.store-account:hover .store-account-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.store-account-menu a {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 12px;
+    color: #102033;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.store-account-menu a:hover {
+    background: #e6f2ee;
+    color: #087557;
+}

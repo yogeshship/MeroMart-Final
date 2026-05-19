@@ -12,14 +12,14 @@
             <div class="footer-col">
                 <h3>Shop</h3>
                 <a href="<c:url value='/product'/>">All Products</a>
-                <a href="<c:url value='/wishlist'/>">Wishlist</a>
+       
                 <a href="<c:url value='/cart'/>">Cart</a>
             </div>
             <div class="footer-col">
                 <h3>Explore</h3>
                 <a href="<c:url value='/about'/>">About Us</a>
                 <a href="<c:url value='/contact'/>">Contact</a>
-                <a href="<c:url value='/orderhistory'/>">Order History</a>
+                <a href="<c:url value='/order-history'/>">Order History</a>
             </div>
             <div class="footer-col">
                 <h3>Support</h3>

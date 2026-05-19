@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${product.name} - Mero Mart</title>
+    <title>${product.productName} - Mero Mart</title>
 
     <!-- Google fonts used by public user pages -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +19,7 @@
 
 <body class="user-body">
 
-    <!-- Use the same public navbar as Home, About, Contact and Product pages -->
+    <!-- Common public navbar -->
     <jsp:include page="../common/navbar.jsp" />
 
     <main class="u-page">
@@ -30,9 +31,18 @@
                 <span>/</span>
                 <a href="<c:url value='/product'/>">Products</a>
                 <span>/</span>
-                <span>${product.category}</span>
+                <span>
+                    <c:choose>
+                        <c:when test="${not empty product.categoryName}">
+                            <c:out value="${product.categoryName}" />
+                        </c:when>
+                        <c:otherwise>
+                            Grocery
+                        </c:otherwise>
+                    </c:choose>
+                </span>
                 <span>/</span>
-                <span>${product.name}</span>
+                <span><c:out value="${product.productName}" /></span>
             </nav>
 
             <!-- Product detail section -->
@@ -41,13 +51,19 @@
                 <!-- Product image area -->
                 <div class="pd-panel pd-gallery">
                     <div class="pd-hero">
-                        <img src="<c:url value='${product.image}'/>" alt="${product.name}">
+                        <c:choose>
+                            <c:when test="${not empty product.imagePath}">
+                                <img src="<c:url value='/${product.imagePath}'/>" alt="${product.productName}">
+                            </c:when>
+
+                            <c:otherwise>
+                                <img src="<c:url value='/assets/images/placeholder.png'/>" alt="Product image">
+                            </c:otherwise>
+                        </c:choose>
                     </div>
 
                     <div class="pd-gallery-note">
-                        <span>
-                            <c:out value="${empty product.badge ? 'Fresh Pick' : product.badge}"/>
-                        </span>
+                        <span>Fresh Pick</span>
 
                         <strong>
                             Selected for a calmer product view with cleaner spacing,
@@ -60,46 +76,65 @@
                 <div class="pd-panel pd-info">
                     <span class="catalog-eyebrow">Product details</span>
 
-                    <h1 class="pd-title">${product.name}</h1>
+                    <h1 class="pd-title">
+                        <c:out value="${product.productName}" />
+                    </h1>
 
                     <p class="pd-kicker">
-                        ${product.category} &#8226; ${product.unit} &#8226; ${product.rating}&#9733; rating
+                        <c:choose>
+                            <c:when test="${not empty product.categoryName}">
+                                <c:out value="${product.categoryName}" />
+                            </c:when>
+                            <c:otherwise>
+                                Grocery
+                            </c:otherwise>
+                        </c:choose>
+                        &#8226;
+                        <c:out value="${product.unit}" />
+                        &#8226;
+                        Stock: <c:out value="${product.stockQuantity}" />
                     </p>
 
                     <div class="pd-row">
-                        <div class="pd-price">Rs. ${product.price}</div>
-                        <div class="pd-chip">${product.stockLabel}</div>
+                        <div class="pd-price">
+                            Rs. <c:out value="${product.price}" />
+                        </div>
+
+                        <div class="pd-chip">
+                            <c:choose>
+                                <c:when test="${product.stockQuantity > 0}">
+                                    In Stock
+                                </c:when>
+                                <c:otherwise>
+                                    Out of Stock
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                     </div>
 
-                    <p class="pd-desc">${product.description}</p>
+                    <p class="pd-desc">
+                        <c:choose>
+                            <c:when test="${not empty product.description}">
+                                <c:out value="${product.description}" />
+                            </c:when>
+                            <c:otherwise>
+                                Fresh grocery item selected for everyday shopping and careful delivery.
+                            </c:otherwise>
+                        </c:choose>
+                    </p>
 
-                  <!-- Product action buttons -->
+                    <!-- Product action button -->
+                    <div class="pd-actions">
+                        <form action="<c:url value='/cart'/>" method="post" style="display:inline;">
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="productId" value="${product.id}">
+                            <input type="hidden" name="quantity" value="1">
 
-				  <div class="pd-actions">
-
-    				<form action="<c:url value='/cart'/>" method="post" style="display:inline;">
-
-        			<input type="hidden" name="action" value="add">
-
-        			<input type="hidden" name="productId" value="${product.id}">
-
-        			<input type="hidden" name="quantity" value="1">
-
-        			<button class="u-btn u-btn--primary" type="submit">
-
-            			Add to Cart
-
-        			</button>
-
-    				</form>
-
-    				<a class="u-btn" href="<c:url value='/wishlist'/>">
-
-        			Save to Wishlist
-
-   		 			</a>
-
-				</div>
+                            <button class="u-btn u-btn--primary" type="submit">
+                                Add to Cart
+                            </button>
+                        </form>
+                    </div>
 
                     <!-- Product highlights -->
                     <div class="u-section pd-section">
@@ -108,17 +143,17 @@
                         <div class="pd-highlights">
                             <div class="pd-feature">
                                 <span>01</span>
-                                <strong>${product.highlightOne}</strong>
+                                <strong>Fresh grocery product available for daily shopping</strong>
                             </div>
 
                             <div class="pd-feature">
                                 <span>02</span>
-                                <strong>${product.highlightTwo}</strong>
+                                <strong>Carefully handled and packed for delivery</strong>
                             </div>
 
                             <div class="pd-feature">
                                 <span>03</span>
-                                <strong>Same-day delivery in valley</strong>
+                                <strong>Same-day delivery in Kathmandu Valley</strong>
                             </div>
                         </div>
                     </div>
@@ -134,13 +169,22 @@
                             </div>
 
                             <div class="pd-quick-card">
-                                <span>Delivery</span>
-                                <strong>Fast valley dispatch</strong>
+                                <span>Unit</span>
+                                <strong><c:out value="${product.unit}" /></strong>
                             </div>
 
                             <div class="pd-quick-card">
-                                <span>Packing</span>
-                                <strong>Carefully handled</strong>
+                                <span>Status</span>
+                                <strong>
+                                    <c:choose>
+                                        <c:when test="${not empty product.status}">
+                                            <c:out value="${product.status}" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            Active
+                                        </c:otherwise>
+                                    </c:choose>
+                                </strong>
                             </div>
                         </div>
                     </div>
@@ -156,31 +200,68 @@
                         <article class="p-card">
                             <a href="<c:url value='/productdetail?id=${p.id}'/>">
 
+                                <!-- Related product image -->
                                 <div class="p-media">
-                                    <c:if test="${not empty p.badge}">
-                                        <span class="p-badge">${p.badge}</span>
-                                    </c:if>
+                                    <c:choose>
+                                        <c:when test="${not empty p.imagePath}">
+                                            <img src="<c:url value='/${p.imagePath}'/>" alt="${p.productName}">
+                                        </c:when>
 
-                                    <img src="<c:url value='${p.image}'/>" alt="${p.name}">
+                                        <c:otherwise>
+                                            <img src="<c:url value='/assets/images/placeholder.png'/>" alt="Product image">
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
 
+                                <!-- Related product details -->
                                 <div class="p-body">
-                                    <h3 class="p-title">${p.name}</h3>
+                                    <h3 class="p-title">
+                                        <c:out value="${p.productName}" />
+                                    </h3>
 
                                     <div class="p-meta">
-                                        <span>${p.category}</span>
-                                        <span>${p.rating}&#9733;</span>
+                                        <span>
+                                            <c:choose>
+                                                <c:when test="${not empty p.categoryName}">
+                                                    <c:out value="${p.categoryName}" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    Grocery
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </span>
+
+                                        <span>Stock: <c:out value="${p.stockQuantity}" /></span>
                                     </div>
 
-                                    <p class="p-description">${p.description}</p>
+                                    <p class="p-description">
+                                        <c:choose>
+                                            <c:when test="${not empty p.description}">
+                                                <c:out value="${p.description}" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                Fresh grocery item selected for everyday shopping.
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
 
                                     <div class="p-price">
-                                        <strong>Rs. ${p.price}</strong>
-                                        <span class="p-unit">${p.unit}</span>
+                                        <strong>Rs. <c:out value="${p.price}" /></strong>
+                                        <span class="p-unit">/ <c:out value="${p.unit}" /></span>
                                     </div>
 
                                     <div class="p-footer">
-                                        <span class="p-stock">${p.stockLabel}</span>
+                                        <span class="p-stock">
+                                            <c:choose>
+                                                <c:when test="${p.stockQuantity > 0}">
+                                                    In Stock
+                                                </c:when>
+                                                <c:otherwise>
+                                                    Out of Stock
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </span>
+
                                         <span class="p-link">View details</span>
                                     </div>
                                 </div>
@@ -201,7 +282,7 @@
                 <div class="pd-notes-panel">
                     <div class="pd-notes-row">
                         <span>Freshness note</span>
-                        <strong>Best enjoyed within 2 to 3 days of delivery for peak taste and texture.</strong>
+                        <strong>Best enjoyed soon after delivery for better taste and quality.</strong>
                     </div>
 
                     <div class="pd-notes-row">
@@ -219,7 +300,7 @@
         </div>
     </main>
 
-    <!-- Use the same public footer as Home, About, Contact and Product pages -->
+    <!-- Common public footer -->
     <jsp:include page="../common/footer.jsp" />
 
 </body>
