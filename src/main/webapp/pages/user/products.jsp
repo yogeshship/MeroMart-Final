@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Main public user CSS -->
-    <link rel="stylesheet" href="<c:url value='/assets/css/user.css'/>">
+    <link rel="stylesheet" href="<c:url value='/assets/css/user.css?v=20260520-2'/>">
 </head>
 
 <body class="user-body">
@@ -28,7 +28,7 @@
             <!-- Product page hero section -->
             <section class="catalog-hero">
                 <div class="catalog-copy catalog-copy--airy">
-                    <div class="catalog-copy-conxtent">
+                    <div class="catalog-copy-content">
                         <span class="catalog-eyebrow">Curated grocery collection</span>
 
                         <h1>Products arranged with more space and less visual noise.</h1>
@@ -75,49 +75,6 @@
                 </div>
             </section>
 
-            <!-- Store highlights -->
-            <section class="catalog-stats" aria-label="Store highlights">
-                <div class="catalog-stat-card">
-                    <span class="catalog-stat-icon"></span>
-                    <div>
-                        <strong>${empty products ? '0' : products.size()}</strong>
-                        <small>Available Products</small>
-                    </div>
-                </div>
-
-                <div class="catalog-stat-card">
-                    <span class="catalog-stat-icon"></span>
-                    <div>
-                        <strong>4.8</strong>
-                        <small>Rating</small>
-                    </div>
-                </div>
-
-                <div class="catalog-stat-card">
-                    <span class="catalog-stat-icon"></span>
-                    <div>
-                        <strong>Fresh</strong>
-                        <small>Daily Picks</small>
-                    </div>
-                </div>
-
-                <div class="catalog-stat-card">
-                    <span class="catalog-stat-icon"></span>
-                    <div>
-                        <strong>24h</strong>
-                        <small>Dispatch</small>
-                    </div>
-                </div>
-
-                <div class="catalog-stat-card">
-                    <span class="catalog-stat-icon"></span>
-                    <div>
-                        <strong>Easy</strong>
-                        <small>Browsing Flow</small>
-                    </div>
-                </div>
-            </section>
-
             <!-- Product filter heading -->
             <section class="catalog-toolbar">
                 <div class="u-page-head">
@@ -129,11 +86,34 @@
                     </div>
                 </div>
 
-                <div class="u-filters" aria-label="Filters">
-                    <span class="filter-chip">Fruits</span>
-                    <span class="filter-chip">Vegetables</span>
-                    <span class="filter-chip">Grains</span>
-                    <span class="filter-chip">Dairy</span>
+                <!-- Functional category filter buttons -->
+                <div class="u-filters" aria-label="Product category filters">
+
+                    <a class="filter-chip ${empty param.q ? 'is-active' : ''}"
+                       href="<c:url value='/product'/>">
+                        All
+                    </a>
+
+                    <a class="filter-chip ${param.q == 'Fruits' ? 'is-active' : ''}"
+                       href="<c:url value='/product?q=Fruits'/>">
+                        Fruits
+                    </a>
+
+                    <a class="filter-chip ${param.q == 'Vegetables' ? 'is-active' : ''}"
+                       href="<c:url value='/product?q=Vegetables'/>">
+                        Vegetables
+                    </a>
+
+                    <a class="filter-chip ${param.q == 'Grains' ? 'is-active' : ''}"
+                       href="<c:url value='/product?q=Grains'/>">
+                        Grains
+                    </a>
+
+                    <a class="filter-chip ${param.q == 'Dairy' ? 'is-active' : ''}"
+                       href="<c:url value='/product?q=Dairy'/>">
+                        Dairy
+                    </a>
+
                 </div>
             </section>
 
@@ -220,8 +200,11 @@
                     <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 28px;">
                         <h2>No products found</h2>
                         <p class="u-subtitle">
-                            No active products are available right now.
+                            No active products are available for this category right now.
                         </p>
+                        <a class="u-btn u-btn--primary" href="<c:url value='/product'/>" style="margin-top: 18px;">
+                            View All Products
+                        </a>
                     </div>
                 </c:if>
 

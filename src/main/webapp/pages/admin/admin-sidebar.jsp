@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <aside class="admin-sidebar">
     <a class="brand" href="<c:url value='/admindashboard'/>">
         <img class="brand-logo" src="<c:url value='/assets/images/logo/logo.png?v=20260501-3'/>" alt="Mero Mart Nepal">
@@ -8,6 +9,8 @@
     <div class="sidebar-title">Admin Panel</div>
 
     <nav class="sidebar-nav">
+
+        <!-- Dashboard -->
         <a class="nav-link ${activePage eq 'dashboard' ? 'is-active' : ''}" href="<c:url value='/admindashboard'/>">
             <span class="nav-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -19,6 +22,8 @@
             </span>
             <span class="nav-label">Dashboard</span>
         </a>
+
+        <!-- Manage Products -->
         <a class="nav-link ${activePage eq 'products' ? 'is-active' : ''}" href="<c:url value='/manageproducts'/>">
             <span class="nav-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -28,6 +33,8 @@
             </span>
             <span class="nav-label">Manage Products</span>
         </a>
+
+        <!-- Add Product -->
         <a class="nav-link ${activePage eq 'add-product' ? 'is-active' : ''}" href="<c:url value='/addproduct'/>">
             <span class="nav-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -37,6 +44,8 @@
             </span>
             <span class="nav-label">Add Product</span>
         </a>
+
+        <!-- Manage Users -->
         <a class="nav-link ${activePage eq 'users' ? 'is-active' : ''}" href="<c:url value='/manageuser'/>">
             <span class="nav-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -46,6 +55,8 @@
             </span>
             <span class="nav-label">Manage Users</span>
         </a>
+
+        <!-- Categories -->
         <a class="nav-link ${activePage eq 'categories' ? 'is-active' : ''}" href="<c:url value='/managecategory'/>">
             <span class="nav-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -56,6 +67,8 @@
             </span>
             <span class="nav-label">Categories</span>
         </a>
+
+        <!-- Orders -->
         <a class="nav-link ${activePage eq 'orders' ? 'is-active' : ''}" href="<c:url value='/manageorder'/>">
             <span class="nav-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -66,11 +79,26 @@
             </span>
             <span class="nav-label">Orders</span>
         </a>
+
+        <!-- Contact Messages -->
+        <a class="nav-link ${activePage eq 'contacts' ? 'is-active' : ''}" href="<c:url value='/admin/contacts'/>">
+            <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 5.5h13v9h-13z"></path>
+                    <path d="m4 6 6 5 6-5"></path>
+                </svg>
+            </span>
+            <span class="nav-label">Contact Messages</span>
+        </a>
+
     </nav>
 
     <div class="sidebar-bottom">
         <div class="sidebar-divider" aria-hidden="true"></div>
+
         <nav class="sidebar-nav sidebar-nav--bottom" aria-label="Account">
+
+            <!-- Settings -->
             <a class="nav-link ${activePage eq 'settings' ? 'is-active' : ''}" href="<c:url value='/profile'/>">
                 <span class="nav-icon" aria-hidden="true">
                     <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -87,6 +115,8 @@
                 </span>
                 <span class="nav-label">Settings</span>
             </a>
+
+            <!-- Logout -->
             <a class="nav-link nav-link--danger" href="<c:url value='/logout'/>">
                 <span class="nav-icon" aria-hidden="true">
                     <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -97,6 +127,7 @@
                 </span>
                 <span class="nav-label">Log Out</span>
             </a>
+
         </nav>
     </div>
 </aside>
