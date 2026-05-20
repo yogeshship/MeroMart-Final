@@ -21,7 +21,7 @@ public class AdminDashboardServlet extends HttpServlet {
 		request.setAttribute("stockSegments", AdminViewDataFactory.stockSegments());
 		request.setAttribute("latestActivities", AdminViewDataFactory.latestActivities());
 		request.setAttribute("recentProducts", AdminViewDataFactory.recentProducts());
-		request.getRequestDispatcher("/pages/admin/admin-dashboard.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/admin/admin-dashboard.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

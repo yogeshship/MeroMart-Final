@@ -62,7 +62,7 @@ public class ProductDetailServlet extends HttpServlet {
             request.setAttribute("relatedProducts", relatedProducts);
             request.setAttribute("activePage", "products");
 
-            request.getRequestDispatcher("/pages/user/product-details.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/user/product-details.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
             response.sendRedirect(request.getContextPath() + "/product");

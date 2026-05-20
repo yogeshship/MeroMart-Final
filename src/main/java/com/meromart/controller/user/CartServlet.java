@@ -36,7 +36,7 @@ public class CartServlet extends HttpServlet {
         request.setAttribute("activePage", "cart");
         request.setAttribute("cartItems", cartDAO.getCartItems(user.getId()));
 
-        request.getRequestDispatcher("/pages/user/cart.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/user/cart.jsp").forward(request, response);
     }
 
     @Override

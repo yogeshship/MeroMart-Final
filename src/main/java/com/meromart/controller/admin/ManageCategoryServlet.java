@@ -38,7 +38,7 @@ public class ManageCategoryServlet extends HttpServlet {
             }
         }
 
-        request.getRequestDispatcher("/pages/admin/manage-categories.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/manage-categories.jsp").forward(request, response);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class ManageCategoryServlet extends HttpServlet {
         request.setAttribute("categoryCount", categories.size());
         request.setAttribute("editCategory", draft);
         request.setAttribute("formError", message);
-        request.getRequestDispatcher("/pages/admin/manage-categories.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/manage-categories.jsp").forward(request, response);
     }
 
     private Integer parseInteger(String value) {

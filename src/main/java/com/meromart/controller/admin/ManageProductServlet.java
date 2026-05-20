@@ -17,6 +17,6 @@ public class ManageProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("products", productService.getAllProducts());
         request.setAttribute("activePage", "products");
-        request.getRequestDispatcher("/pages/admin/manage-products.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/manage-products.jsp").forward(request, response);
     }
 }

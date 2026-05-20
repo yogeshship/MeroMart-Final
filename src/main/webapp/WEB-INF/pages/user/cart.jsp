@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - Mero Mart</title>
 
+    <!-- Google fonts used by public user pages -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- User stylesheet stays outside WEB-INF -->
     <link rel="stylesheet" href="<c:url value='/assets/css/user.css'/>">
 
     <style>
         .cart-page-head {
             margin-bottom: 34px;
+        }
+
+        .cart-page-head h1 {
+            margin: 18px 0 14px;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 0.96;
+            letter-spacing: -0.035em;
+            color: #102033;
+            max-width: 12ch;
         }
 
         .cart-shell {
@@ -207,14 +220,17 @@
 
 <body class="user-body">
 
-    <jsp:include page="../common/navbar.jsp" />
+    <!-- Common public navbar from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="u-page">
         <div class="u-container">
 
             <section class="cart-page-head">
                 <span class="catalog-eyebrow">Shopping Cart</span>
+
                 <h1>Review your grocery basket before checkout.</h1>
+
                 <p class="u-subtitle">
                     Check selected products, update quantities, remove unwanted items, and continue to checkout.
                 </p>
@@ -223,10 +239,13 @@
             <c:choose>
                 <c:when test="${not empty cartItems}">
                     <section class="cart-shell">
+
+                        <!-- Cart items -->
                         <div class="cart-panel">
                             <c:forEach var="item" items="${cartItems}">
                                 <div class="cart-item-card">
 
+                                    <!-- Product image -->
                                     <div class="cart-item-img-wrap">
                                         <c:choose>
                                             <c:when test="${not empty item.productImage}">
@@ -234,6 +253,7 @@
                                                      alt="${item.productName}"
                                                      class="cart-item-img">
                                             </c:when>
+
                                             <c:otherwise>
                                                 <div class="cart-item-img"
                                                      style="display:flex;align-items:center;justify-content:center;color:#637083;font-weight:800;">
@@ -243,8 +263,12 @@
                                         </c:choose>
                                     </div>
 
+                                    <!-- Product details -->
                                     <div class="cart-item-info">
-                                        <h3><c:out value="${item.productName}" /></h3>
+                                        <h3>
+                                            <c:out value="${item.productName}" />
+                                        </h3>
+
                                         <div class="cart-item-price">
                                             Rs. <c:out value="${item.productPrice}" />
                                             /
@@ -252,9 +276,11 @@
                                         </div>
                                     </div>
 
+                                    <!-- Quantity update -->
                                     <form action="<c:url value='/cart'/>" method="post" class="cart-item-qty">
                                         <input type="hidden" name="action" value="update">
                                         <input type="hidden" name="cartItemId" value="${item.cartItemId}">
+
                                         <input type="number"
                                                name="quantity"
                                                value="${item.quantity}"
@@ -263,10 +289,12 @@
                                                onchange="this.form.submit()">
                                     </form>
 
+                                    <!-- Subtotal -->
                                     <div class="cart-item-subtotal">
                                         Rs. <c:out value="${item.subtotal}" />
                                     </div>
 
+                                    <!-- Remove item -->
                                     <form action="<c:url value='/cart'/>" method="post">
                                         <input type="hidden" name="action" value="remove">
                                         <input type="hidden" name="cartItemId" value="${item.cartItemId}">
@@ -286,17 +314,19 @@
                             </c:forEach>
                         </div>
 
+                        <!-- Cart summary -->
                         <aside class="cart-panel cart-summary">
                             <h2>Order Summary</h2>
 
                             <c:set var="total" value="0" />
+
                             <c:forEach var="item" items="${cartItems}">
                                 <c:set var="total" value="${total + item.subtotal}" />
                             </c:forEach>
 
                             <div class="summary-row">
                                 <span>Subtotal</span>
-                                <strong>Rs. ${total}</strong>
+                                <strong>Rs. <c:out value="${total}" /></strong>
                             </div>
 
                             <div class="summary-row">
@@ -306,7 +336,7 @@
 
                             <div class="summary-row summary-total">
                                 <span>Total</span>
-                                <strong>Rs. ${total}</strong>
+                                <strong>Rs. <c:out value="${total}" /></strong>
                             </div>
 
                             <div class="cart-actions">
@@ -350,6 +380,8 @@
         </div>
     </main>
 
-    <jsp:include page="../common/footer.jsp" />
+    <!-- Common public footer from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
+</html>

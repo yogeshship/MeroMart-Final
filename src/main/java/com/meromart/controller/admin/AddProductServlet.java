@@ -35,7 +35,7 @@ public class AddProductServlet extends HttpServlet {
         request.setAttribute("categories", productService.getAllCategories());
         request.setAttribute("activePage", "add-product");
 
-        request.getRequestDispatcher("/pages/admin/add-product.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/add-product.jsp").forward(request, response);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class AddProductServlet extends HttpServlet {
         request.setAttribute("categories", productService.getAllCategories());
         request.setAttribute("activePage", "add-product");
 
-        request.getRequestDispatcher("/pages/admin/add-product.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/add-product.jsp").forward(request, response);
     }
 
     private String trim(String value) {

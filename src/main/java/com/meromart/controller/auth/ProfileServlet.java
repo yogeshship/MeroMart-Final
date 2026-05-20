@@ -25,7 +25,7 @@ public class ProfileServlet extends HttpServlet {
 
         request.setAttribute("activePage", "settings");
         request.setAttribute("profileUser", user);
-        request.getRequestDispatcher("/pages/auth/profile.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/auth/profile.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

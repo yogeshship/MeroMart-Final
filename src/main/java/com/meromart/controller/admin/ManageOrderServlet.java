@@ -25,7 +25,7 @@ public class ManageOrderServlet extends HttpServlet {
         request.setAttribute("activePage", "orders");
         request.setAttribute("orders", orderDAO.getAllOrders());
 
-        request.getRequestDispatcher("/pages/admin/manage-orders.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/manage-orders.jsp").forward(request, response);
     }
 
     // Updates order status from the admin side

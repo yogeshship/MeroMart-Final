@@ -29,6 +29,6 @@ public class OrderHistoryServlet extends HttpServlet {
         if ("true".equals(request.getParameter("success"))) {
             request.setAttribute("successMessage", "Your order has been placed successfully!");
         }
-        request.getRequestDispatcher("/pages/user/order-history.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/user/order-history.jsp").forward(request, response);
     }
 }

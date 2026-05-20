@@ -6,21 +6,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${product.productName} - Mero Mart</title>
+    <title><c:out value="${product.productName}" /> - Mero Mart</title>
 
     <!-- Google fonts used by public user pages -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Main public user CSS -->
+    <!-- Main public user CSS stays outside WEB-INF -->
     <link rel="stylesheet" href="<c:url value='/assets/css/user.css'/>">
 </head>
 
 <body class="user-body">
 
-    <!-- Common public navbar -->
-    <jsp:include page="../common/navbar.jsp" />
+    <!-- Common public navbar from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="u-page">
         <div class="u-container">
@@ -31,6 +31,7 @@
                 <span>/</span>
                 <a href="<c:url value='/product'/>">Products</a>
                 <span>/</span>
+
                 <span>
                     <c:choose>
                         <c:when test="${not empty product.categoryName}">
@@ -41,8 +42,12 @@
                         </c:otherwise>
                     </c:choose>
                 </span>
+
                 <span>/</span>
-                <span><c:out value="${product.productName}" /></span>
+
+                <span>
+                    <c:out value="${product.productName}" />
+                </span>
             </nav>
 
             <!-- Product detail section -->
@@ -300,8 +305,8 @@
         </div>
     </main>
 
-    <!-- Common public footer -->
-    <jsp:include page="../common/footer.jsp" />
+    <!-- Common public footer from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
 </html>

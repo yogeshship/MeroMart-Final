@@ -28,7 +28,7 @@ public class ContactServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "contact");
-        request.getRequestDispatcher("/pages/common/contact.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/common/contact.jsp").forward(request, response);
     }
 
     // Handles contact form submission
@@ -44,14 +44,14 @@ public class ContactServlet extends HttpServlet {
         if (isEmpty(name) || isEmpty(email) || isEmpty(subject) || isEmpty(message)) {
             request.setAttribute("activePage", "contact");
             request.setAttribute("errorMessage", "All fields are required.");
-            request.getRequestDispatcher("/pages/common/contact.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/common/contact.jsp").forward(request, response);
             return;
         }
 
         if (!email.contains("@") || !email.contains(".")) {
             request.setAttribute("activePage", "contact");
             request.setAttribute("errorMessage", "Please enter a valid email address.");
-            request.getRequestDispatcher("/pages/common/contact.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/common/contact.jsp").forward(request, response);
             return;
         }
 
@@ -72,7 +72,7 @@ public class ContactServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Failed to send message. Please try again.");
         }
 
-        request.getRequestDispatcher("/pages/common/contact.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/common/contact.jsp").forward(request, response);
     }
 
     // Checks empty input

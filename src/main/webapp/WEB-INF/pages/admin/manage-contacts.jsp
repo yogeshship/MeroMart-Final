@@ -5,17 +5,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Messages - Mero Mart</title>
 
-    <!-- Admin stylesheet -->
+    <!-- Google font for admin pages -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Admin stylesheet stays outside WEB-INF -->
     <link rel="stylesheet" href="<c:url value='/assets/css/admin.css?v=20260520-contacts'/>">
 </head>
 
 <body class="admin-body">
+
     <div class="admin-shell">
 
-        <!-- Admin sidebar -->
-        <jsp:include page="admin-sidebar.jsp" />
+        <!-- Admin sidebar navigation from WEB-INF -->
+        <jsp:include page="/WEB-INF/pages/admin/admin-sidebar.jsp" />
 
         <main class="admin-main admin-main--airy">
 
@@ -46,14 +53,29 @@
                         <tbody>
                             <c:forEach var="contact" items="${contacts}">
                                 <tr>
-                                    <td>#<c:out value="${contact.id}" /></td>
-                                    <td><c:out value="${contact.name}" /></td>
-                                    <td><c:out value="${contact.email}" /></td>
-                                    <td><c:out value="${contact.subject}" /></td>
+                                    <td>
+                                        #<c:out value="${contact.id}" />
+                                    </td>
+
+                                    <td>
+                                        <c:out value="${contact.name}" />
+                                    </td>
+
+                                    <td>
+                                        <c:out value="${contact.email}" />
+                                    </td>
+
+                                    <td>
+                                        <c:out value="${contact.subject}" />
+                                    </td>
+
                                     <td style="max-width: 360px; white-space: normal; line-height: 1.6;">
                                         <c:out value="${contact.message}" />
                                     </td>
-                                    <td><c:out value="${contact.createdAt}" /></td>
+
+                                    <td>
+                                        <c:out value="${contact.createdAt}" />
+                                    </td>
                                 </tr>
                             </c:forEach>
 
@@ -70,6 +92,7 @@
 
                 <div class="table-footer">
                     <span>Customer contact records</span>
+
                     <div class="pagination">
                         <button class="is-current" type="button">1</button>
                     </div>
@@ -78,5 +101,6 @@
 
         </main>
     </div>
+
 </body>
 </html>

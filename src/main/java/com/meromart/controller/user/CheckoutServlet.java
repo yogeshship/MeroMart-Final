@@ -44,7 +44,7 @@ public class CheckoutServlet extends HttpServlet {
         request.setAttribute("cartItems", cartItems);
         request.setAttribute("total", total);
 
-        request.getRequestDispatcher("/pages/user/checkout.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/user/checkout.jsp").forward(request, response);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class CheckoutServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Delivery address is required.");
             request.setAttribute("cartItems", cartItems);
             request.setAttribute("total", calculateTotal(cartItems));
-            request.getRequestDispatcher("/pages/user/checkout.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/user/checkout.jsp").forward(request, response);
             return;
         }
 
@@ -102,7 +102,7 @@ public class CheckoutServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Order could not be placed. Please try again.");
             request.setAttribute("cartItems", cartItems);
             request.setAttribute("total", total);
-            request.getRequestDispatcher("/pages/user/checkout.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/user/checkout.jsp").forward(request, response);
         }
     }
 

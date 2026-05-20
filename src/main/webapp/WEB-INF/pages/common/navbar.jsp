@@ -3,6 +3,7 @@
 
 <%-- Check logged-in user from session --%>
 <c:set var="loggedUser" value="${sessionScope.currentUser}" />
+
 <c:if test="${empty loggedUser}">
     <c:set var="loggedUser" value="${sessionScope.user}" />
 </c:if>
@@ -94,17 +95,25 @@
 
             <!-- Public navigation links -->
             <nav class="store-menu" aria-label="Main">
-                <a class="store-link ${activePage eq 'home' ? 'is-active' : ''}" 
-                   href="<c:url value='/home'/>">Home</a>
+                <a class="store-link ${activePage eq 'home' ? 'is-active' : ''}"
+                   href="<c:url value='/home'/>">
+                    Home
+                </a>
 
-                <a class="store-link ${activePage eq 'products' ? 'is-active' : ''}" 
-                   href="<c:url value='/product'/>">Products</a>
+                <a class="store-link ${activePage eq 'products' ? 'is-active' : ''}"
+                   href="<c:url value='/product'/>">
+                    Products
+                </a>
 
-                <a class="store-link ${activePage eq 'about' ? 'is-active' : ''}" 
-                   href="<c:url value='/about'/>">About</a>
+                <a class="store-link ${activePage eq 'about' ? 'is-active' : ''}"
+                   href="<c:url value='/about'/>">
+                    About
+                </a>
 
-                <a class="store-link ${activePage eq 'contact' ? 'is-active' : ''}" 
-                   href="<c:url value='/contact'/>">Contact</a>
+                <a class="store-link ${activePage eq 'contact' ? 'is-active' : ''}"
+                   href="<c:url value='/contact'/>">
+                    Contact
+                </a>
             </nav>
 
             <!-- Right side navbar tools -->
@@ -120,7 +129,7 @@
                     <input name="q"
                            type="search"
                            placeholder="Search by product or category"
-                           value="${param.q}">
+                           value="<c:out value='${param.q}'/>">
                 </form>
 
                 <!-- Cart button -->
@@ -151,9 +160,17 @@
 
                             <!-- Account dropdown menu -->
                             <div class="nav-account-menu">
-                                <a href="<c:url value='/usersettings'/>">Settings</a>
-                                <a href="<c:url value='/order-history'/>">Order History</a>
-                                <a href="<c:url value='/logout'/>">Logout</a>
+                                <a href="<c:url value='/usersettings'/>">
+                                    Settings
+                                </a>
+
+                                <a href="<c:url value='/order-history'/>">
+                                    Order History
+                                </a>
+
+                                <a href="<c:url value='/logout'/>">
+                                    Logout
+                                </a>
                             </div>
 
                         </details>

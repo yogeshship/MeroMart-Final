@@ -29,6 +29,6 @@ public class UserSettingsServlet extends HttpServlet {
         request.setAttribute("activePage", "settings");
         request.setAttribute("profileUser", user);
 
-        request.getRequestDispatcher("/pages/user/user-settings.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/user/user-settings.jsp").forward(request, response);
     }
 }

@@ -24,7 +24,7 @@ public class UpdateProductServlet extends HttpServlet {
         request.setAttribute("product", productService.getProductById(id));
         request.setAttribute("categories", productService.getAllCategories());
         request.setAttribute("activePage", "products");
-        request.getRequestDispatcher("/pages/admin/edit-product.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/edit-product.jsp").forward(request, response);
     }
 
     @Override

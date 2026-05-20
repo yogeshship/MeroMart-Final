@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,20 @@
     <link rel="stylesheet" href="<c:url value='/assets/css/user.css'/>">
 
     <style>
+        .checkout-head {
+            margin-bottom: 34px;
+        }
+
+        .checkout-head h1 {
+            margin: 18px 0 14px;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 0.96;
+            letter-spacing: -0.035em;
+            color: #102033;
+            max-width: 12ch;
+        }
+
         .checkout-shell {
             display: grid;
             grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
@@ -106,14 +121,16 @@
 
 <body class="user-body">
 
-    <jsp:include page="../common/navbar.jsp" />
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="u-page">
         <div class="u-container">
 
-            <section style="margin-bottom:34px;">
+            <section class="checkout-head">
                 <span class="catalog-eyebrow">Checkout</span>
+
                 <h1>Confirm your delivery details.</h1>
+
                 <p class="u-subtitle">
                     Review your cart and enter delivery information before placing the order.
                 </p>
@@ -123,8 +140,14 @@
                 <c:when test="${empty cartItems}">
                     <section class="checkout-panel" style="text-align:center;">
                         <h2>Your cart is empty</h2>
-                        <p class="u-subtitle">Please add products to your cart before checkout.</p>
-                        <a class="u-btn u-btn--primary" href="<c:url value='/product'/>">Browse Products</a>
+
+                        <p class="u-subtitle">
+                            Please add products to your cart before checkout.
+                        </p>
+
+                        <a class="u-btn u-btn--primary" href="<c:url value='/product'/>">
+                            Browse Products
+                        </a>
                     </section>
                 </c:when>
 
@@ -136,17 +159,25 @@
 
                             <div class="checkout-field">
                                 <label>Full Name</label>
-                                <input type="text" name="fullName" placeholder="Enter your full name" required>
+                                <input type="text"
+                                       name="fullName"
+                                       placeholder="Enter your full name"
+                                       required>
                             </div>
 
                             <div class="checkout-field">
                                 <label>Phone Number</label>
-                                <input type="text" name="phone" placeholder="Enter phone number" required>
+                                <input type="text"
+                                       name="phone"
+                                       placeholder="Enter phone number"
+                                       required>
                             </div>
 
                             <div class="checkout-field">
                                 <label>Delivery Address</label>
-                                <textarea name="address" placeholder="Enter delivery address" required></textarea>
+                                <textarea name="address"
+                                          placeholder="Enter delivery address"
+                                          required></textarea>
                             </div>
 
                             <div class="checkout-field">
@@ -173,7 +204,10 @@
                                             ×
                                             <c:out value="${item.quantity}" />
                                         </span>
-                                        <strong>Rs. <c:out value="${item.subtotal}" /></strong>
+
+                                        <strong>
+                                            Rs. <c:out value="${item.subtotal}" />
+                                        </strong>
                                     </div>
                                 </c:forEach>
                             </div>
@@ -185,12 +219,17 @@
 
                             <div class="checkout-total">
                                 <span>Total</span>
-                                <span>Rs. ${total}</span>
+                                <span>Rs. <c:out value="${total}" /></span>
                             </div>
 
                             <div class="checkout-actions">
-                                <a class="u-btn" href="<c:url value='/cart'/>">Back to Cart</a>
-                                <a class="u-btn" href="<c:url value='/product'/>">Continue Shopping</a>
+                                <a class="u-btn" href="<c:url value='/cart'/>">
+                                    Back to Cart
+                                </a>
+
+                                <a class="u-btn" href="<c:url value='/product'/>">
+                                    Continue Shopping
+                                </a>
                             </div>
                         </aside>
 
@@ -201,7 +240,7 @@
         </div>
     </main>
 
-    <jsp:include page="../common/footer.jsp" />
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
 </html>

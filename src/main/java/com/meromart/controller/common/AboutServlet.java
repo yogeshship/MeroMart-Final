@@ -18,6 +18,6 @@ public class AboutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("activePage", "about");
-        request.getRequestDispatcher("/pages/common/about.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/common/about.jsp").forward(request, response);
     }
 }

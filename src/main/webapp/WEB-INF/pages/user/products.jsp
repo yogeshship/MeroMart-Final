@@ -13,14 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Main public user CSS -->
+    <!-- Main public user CSS stays outside WEB-INF -->
     <link rel="stylesheet" href="<c:url value='/assets/css/user.css?v=20260520-2'/>">
 </head>
 
 <body class="user-body">
 
-    <!-- Common public navbar -->
-    <jsp:include page="../common/navbar.jsp" />
+    <!-- Common public navbar from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="u-page">
         <div class="u-container">
@@ -45,19 +45,26 @@
                         </div>
 
                         <div class="catalog-cta">
-                            <a class="u-btn u-btn--primary" href="#catalog-grid">Browse Products</a>
-                            <a class="u-btn" href="<c:url value='/usersettings'/>">Account Settings</a>
+                            <a class="u-btn u-btn--primary" href="#catalog-grid">
+                                Browse Products
+                            </a>
+
+                            <a class="u-btn" href="<c:url value='/usersettings'/>">
+                                Account Settings
+                            </a>
                         </div>
                     </div>
 
                     <div class="catalog-hero-visual">
-                        <img src="<c:url value='/assets/images/banners/hero-market.webp'/>" alt="Organic fresh produce market">
+                        <img src="<c:url value='/assets/images/banners/hero-market.webp'/>"
+                             alt="Organic fresh produce market">
                     </div>
                 </div>
 
                 <div class="catalog-aside">
                     <div class="catalog-aside-card">
                         <span>Shopping rhythm</span>
+
                         <strong>Less pressure. Better focus.</strong>
 
                         <p class="catalog-focus-copy">
@@ -69,7 +76,8 @@
                         </p>
 
                         <div class="catalog-focus-visual">
-                            <img src="<c:url value='/assets/images/banners/focus-basket.webp'/>" alt="Premium grocery basket">
+                            <img src="<c:url value='/assets/images/banners/focus-basket.webp'/>"
+                                 alt="Premium grocery basket">
                         </div>
                     </div>
                 </div>
@@ -80,6 +88,7 @@
                 <div class="u-page-head">
                     <div>
                         <h2>Shop products</h2>
+
                         <p class="u-subtitle">
                             Browse a cleaner premium selection across fruits, vegetables, grains, and dairy.
                         </p>
@@ -128,11 +137,13 @@
                             <div class="p-media">
                                 <c:choose>
                                     <c:when test="${not empty p.imagePath}">
-                                        <img src="<c:url value='/${p.imagePath}'/>" alt="${p.productName}">
+                                        <img src="<c:url value='/${p.imagePath}'/>"
+                                             alt="${p.productName}">
                                     </c:when>
 
                                     <c:otherwise>
-                                        <img src="<c:url value='/assets/images/placeholder.png'/>" alt="Product image">
+                                        <img src="<c:url value='/assets/images/placeholder.png'/>"
+                                             alt="Product image">
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -199,10 +210,14 @@
                 <c:if test="${empty products}">
                     <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 28px;">
                         <h2>No products found</h2>
+
                         <p class="u-subtitle">
                             No active products are available for this category right now.
                         </p>
-                        <a class="u-btn u-btn--primary" href="<c:url value='/product'/>" style="margin-top: 18px;">
+
+                        <a class="u-btn u-btn--primary"
+                           href="<c:url value='/product'/>"
+                           style="margin-top: 18px;">
                             View All Products
                         </a>
                     </div>
@@ -212,8 +227,8 @@
         </div>
     </main>
 
-    <!-- Common public footer -->
-    <jsp:include page="../common/footer.jsp" />
+    <!-- Common public footer from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
 </html>

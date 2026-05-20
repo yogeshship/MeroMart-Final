@@ -38,7 +38,7 @@ public class ManageUserServlet extends HttpServlet {
             }
         }
 
-        request.getRequestDispatcher("/pages/admin/manage-users.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/manage-user.jsp").forward(request, response);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class ManageUserServlet extends HttpServlet {
         request.setAttribute("userStats", userService.buildUserStats());
         request.setAttribute("editUser", draft);
         request.setAttribute("formError", message);
-        request.getRequestDispatcher("/pages/admin/manage-users.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/manage-user.jsp").forward(request, response);
     }
 
     private Integer parseInteger(String value) {

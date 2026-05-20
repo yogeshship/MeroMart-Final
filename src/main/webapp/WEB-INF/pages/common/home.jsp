@@ -13,14 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Your existing user CSS -->
+    <!-- User stylesheet stays outside WEB-INF -->
     <link rel="stylesheet" href="<c:url value='/assets/css/user.css?v=20260520-home-final'/>">
 </head>
 
 <body class="user-body">
 
-    <!-- Keep your own navbar -->
-    <jsp:include page="navbar.jsp" />
+    <!-- Common public navbar from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="home-page">
 
@@ -39,8 +39,13 @@
                 </p>
 
                 <div class="home-simple-actions">
-                    <a href="<c:url value='/product'/>" class="home-simple-btn primary">Shop Now</a>
-                    <a href="#featured" class="home-simple-btn secondary">View Products</a>
+                    <a href="<c:url value='/product'/>" class="home-simple-btn primary">
+                        Shop Now
+                    </a>
+
+                    <a href="#featured" class="home-simple-btn secondary">
+                        View Products
+                    </a>
                 </div>
             </div>
 
@@ -103,7 +108,9 @@
                 <p>Get quality grocery items with fast Kathmandu Valley delivery.</p>
             </div>
 
-            <a href="<c:url value='/product'/>">Browse Offers</a>
+            <a href="<c:url value='/product'/>">
+                Browse Offers
+            </a>
         </section>
 
         <!-- Featured products section -->
@@ -124,6 +131,7 @@
                                     <c:when test="${not empty p.imagePath}">
                                         <img src="<c:url value='/${p.imagePath}'/>" alt="${p.productName}">
                                     </c:when>
+
                                     <c:otherwise>
                                         <img src="<c:url value='/assets/images/placeholder.png'/>" alt="Product image">
                                     </c:otherwise>
@@ -147,7 +155,9 @@
                                         </c:choose>
                                     </span>
 
-                                    <span>Stock: <c:out value="${p.stockQuantity}" /></span>
+                                    <span>
+                                        Stock: <c:out value="${p.stockQuantity}" />
+                                    </span>
                                 </div>
 
                                 <p class="p-description">
@@ -186,13 +196,20 @@
                     </article>
                 </c:forEach>
 
+                <c:if test="${empty products}">
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: #ffffff; border-radius: 20px;">
+                        <h2>No featured products found</h2>
+                        <p>Products will appear here after they are added from the admin side.</p>
+                    </div>
+                </c:if>
+
             </div>
         </section>
 
     </main>
 
-    <!-- Keep your own footer -->
-    <jsp:include page="footer.jsp" />
+    <!-- Common public footer from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
 </html>

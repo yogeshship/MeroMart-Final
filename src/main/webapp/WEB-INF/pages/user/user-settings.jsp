@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,14 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Main user-side stylesheet -->
+    <!-- Main user-side stylesheet stays outside WEB-INF -->
     <link rel="stylesheet" href="<c:url value='/assets/css/user.css'/>">
 </head>
 
 <body class="user-body">
 
-    <!-- Common navbar used by Home, Product, Cart, Checkout and Order History pages -->
-    <jsp:include page="../common/navbar.jsp" />
+    <!-- Common navbar from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="u-page">
         <div class="u-container">
@@ -227,8 +228,8 @@
         </div>
     </main>
 
-    <!-- Common footer used by the public user-side pages -->
-    <jsp:include page="../common/footer.jsp" />
+    <!-- Common footer from WEB-INF -->
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
 </html>

@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         populateViewModel(request);
-        request.getRequestDispatcher("/pages/auth/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/auth/login.jsp").forward(request, response);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("submittedEmail", email == null ? "" : email);
 
             populateViewModel(request);
-            request.getRequestDispatcher("/pages/auth/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/auth/login.jsp").forward(request, response);
             return;
         }
 
@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("submittedEmail", email);
 
             populateViewModel(request);
-            request.getRequestDispatcher("/pages/auth/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/auth/login.jsp").forward(request, response);
             return;
         }
 

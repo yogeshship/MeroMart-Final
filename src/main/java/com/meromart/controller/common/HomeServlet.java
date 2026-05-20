@@ -48,6 +48,6 @@ public class HomeServlet extends HttpServlet {
        
         request.setAttribute("activePage", "home");
 
-        request.getRequestDispatcher("/pages/common/home.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/common/home.jsp").forward(request, response);
     }
 }

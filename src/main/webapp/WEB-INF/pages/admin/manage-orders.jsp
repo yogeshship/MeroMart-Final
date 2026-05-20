@@ -14,16 +14,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Admin stylesheet -->
-    <link rel="stylesheet" href="<c:url value='/assets/css/admin.css?v=20260501-2'/>">
+    <!-- Admin stylesheet stays outside WEB-INF -->
+    <link rel="stylesheet" href="<c:url value='/assets/css/admin.css?v=20260520-1'/>">
 </head>
 
 <body class="admin-body">
 
     <div class="admin-shell">
 
-        <!-- Admin sidebar -->
-        <jsp:include page="admin-sidebar.jsp" />
+        <!-- Admin sidebar navigation from WEB-INF -->
+        <jsp:include page="/WEB-INF/pages/admin/admin-sidebar.jsp" />
 
         <main class="admin-main admin-main--airy">
 
@@ -55,7 +55,7 @@
                 <form class="search-form" action="<c:url value='/manageorder'/>" method="get">
                     <input type="search"
                            name="q"
-                           value="${searchQuery}"
+                           value="<c:out value='${searchQuery}'/>"
                            placeholder="Search orders by customer or status...">
                     <button type="submit" aria-label="Search"></button>
                 </form>
@@ -84,7 +84,7 @@
                                 <tr>
                                     <!-- Order ID -->
                                     <td>
-                                        ORD-${order.orderId}
+                                        ORD-<c:out value="${order.orderId}" />
                                     </td>
 
                                     <!-- Customer name -->
@@ -161,6 +161,7 @@
                                               method="post"
                                               style="align-items: center;">
 
+                                            <!-- Must match ManageOrderServlet parameter name -->
                                             <input type="hidden" name="orderId" value="${order.orderId}">
 
                                             <select name="status" style="min-width: 120px;">
@@ -208,6 +209,7 @@
                 <!-- Table footer -->
                 <div class="table-footer">
                     <span>Customer order records</span>
+
                     <div class="pagination">
                         <button class="is-current" type="button">1</button>
                     </div>

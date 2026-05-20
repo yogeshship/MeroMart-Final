@@ -24,6 +24,6 @@ public class AdminContactServlet extends HttpServlet {
         request.setAttribute("activePage", "contacts");
         request.setAttribute("contacts", contactDAO.getAllContacts());
 
-        request.getRequestDispatcher("/pages/admin/manage-contacts.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/admin/manage-contacts.jsp").forward(request, response);
     }
 }

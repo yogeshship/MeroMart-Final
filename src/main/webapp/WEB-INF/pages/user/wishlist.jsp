@@ -55,7 +55,7 @@
 <body class="user-body">
 
     <!-- Common navbar -->
-    <jsp:include page="../common/navbar.jsp" />
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="u-page">
         <div class="u-container">
@@ -94,7 +94,7 @@
     </main>
 
     <!-- Common footer -->
-    <jsp:include page="../common/footer.jsp" />
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
 </html>

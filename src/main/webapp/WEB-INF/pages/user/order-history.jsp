@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +18,16 @@
     <style>
         .orders-page-head {
             margin-bottom: 34px;
+        }
+
+        .orders-page-head h1 {
+            margin: 18px 0 14px;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 0.96;
+            letter-spacing: -0.035em;
+            color: #102033;
+            max-width: 12ch;
         }
 
         .orders-panel {
@@ -155,14 +166,16 @@
 
 <body class="user-body">
 
-    <jsp:include page="../common/navbar.jsp" />
+    <jsp:include page="/WEB-INF/pages/common/navbar.jsp" />
 
     <main class="u-page">
         <div class="u-container">
 
             <section class="orders-page-head">
                 <span class="catalog-eyebrow">Order History</span>
+
                 <h1>Track your previous grocery orders.</h1>
+
                 <p class="u-subtitle">
                     View your placed orders, delivery address, order status, and total order amount.
                 </p>
@@ -178,33 +191,62 @@
                 <c:when test="${not empty orders}">
                     <section class="orders-panel">
                         <div class="orders-list">
+
                             <c:forEach var="order" items="${orders}">
                                 <article class="order-card">
+
                                     <div class="order-header">
                                         <div>
-                                            <span class="order-id">Order #${order.orderId}</span>
+                                            <span class="order-id">
+                                                Order #<c:out value="${order.orderId}" />
+                                            </span>
+
                                             <span class="order-date">
-                                                <fmt:formatDate value="${order.orderDate}" pattern="MMM dd, yyyy" />
+                                                <c:choose>
+                                                    <c:when test="${not empty order.orderDate}">
+                                                        <fmt:formatDate value="${order.orderDate}" pattern="MMM dd, yyyy" />
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        Date not available
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </span>
                                         </div>
 
                                         <span class="order-status">
-                                            <c:out value="${order.orderStatus}" />
+                                            <c:choose>
+                                                <c:when test="${not empty order.orderStatus}">
+                                                    <c:out value="${order.orderStatus}" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    pending
+                                                </c:otherwise>
+                                            </c:choose>
                                         </span>
                                     </div>
 
                                     <div class="order-body">
                                         <p>
                                             <strong>Delivery Address:</strong><br>
-                                            <c:out value="${order.deliveryAddress}" />
+
+                                            <c:choose>
+                                                <c:when test="${not empty order.deliveryAddress}">
+                                                    <c:out value="${order.deliveryAddress}" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    No address available
+                                                </c:otherwise>
+                                            </c:choose>
                                         </p>
 
                                         <div class="order-total">
                                             Rs. <c:out value="${order.totalAmount}" />
                                         </div>
                                     </div>
+
                                 </article>
                             </c:forEach>
+
                         </div>
                     </section>
                 </c:when>
@@ -238,7 +280,7 @@
         </div>
     </main>
 
-    <jsp:include page="../common/footer.jsp" />
+    <jsp:include page="/WEB-INF/pages/common/footer.jsp" />
 
 </body>
 </html>

@@ -59,8 +59,8 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("searchQuery", query == null ? "" : query);
         request.setAttribute("activePage", "products");
 
-        request.getRequestDispatcher("/pages/user/products.jsp").forward(request, response);
-    }
+        request.getRequestDispatcher("/WEB-INF/pages/user/products.jsp").forward(request, response);
+        }
 
     // Product page search also uses GET logic
     @Override
